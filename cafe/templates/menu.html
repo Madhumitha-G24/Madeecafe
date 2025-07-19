@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Madee Café - Menu</title>
+</head>
+<body>
+    <h1>Madee Café - Order Menu</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Name:</label><input type="text" name="name" required><br>
+        <label>Email:</label><input type="email" name="email" required><br>
+        <label>Message:</label><textarea name="message"></textarea><br>
+
+        <h3>Items</h3>
+        <label>Espresso (₹50):</label><input type="number" name="espresso" min="0" value="0"><br>
+        <label>Latte (₹80):</label><input type="number" name="latte" min="0" value="0"><br>
+        <label>Cappuccino (₹90):</label><input type="number" name="cappuccino" min="0" value="0"><br>
+        <label>Brownie (₹40):</label><input type="number" name="brownie" min="0" value="0"><br>
+        <label>Croissant (₹60):</label><input type="number" name="croissant" min="0" value="0"><br>
+        <label>Iced Mocha (₹100):</label><input type="number" name="iced_mocha" min="0" value="0"><br>
+
+        <button type="submit">Next: Add Address</button>
+    </form>
+</body>
+</html>

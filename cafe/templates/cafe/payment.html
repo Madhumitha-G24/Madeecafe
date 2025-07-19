@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment - Madee Cafe</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("{% static 'images/cafe_bg.png' %}");
+
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #3e2723;
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.92);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fffdf8;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #6d3200;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 25px;
+      border-collapse: collapse;
+      background-color: #fff;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #fbe9e7;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background: #7b3f00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5e2f00;
+    }
+
+    .qr-box {
+      margin-top: 30px;
+      padding: 20px;
+      text-align: center;
+      background: #fff7e6;
+      border-radius: 10px;
+    }
+
+    .qr-box img {
+      width: 220px;
+      margin-bottom: 10px;
+    }
+
+    .order-summary {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <h2>Hi {{ name }}, Ready to Pay?</h2>
+
+      <form method="POST">
+        {% csrf_token %}
+        <p class="total">Total: ₹{{ total }}</p>
+
+        <label><input type="radio" name="payment_method" value="gpay" required> Google Pay</label>
+        <label><input type="radio" name="payment_method" value="cod"> Cash on Delivery</label>
+
+        <button type="submit">Proceed</button>
+      </form>
+
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Qty</th><th>Price</th><th>Subtotal</th></tr>
+          </thead>
+          <tbody>
+            {% for item in cart_items %}
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>{{ item.qty }}</td>
+              <td>₹{{ item.price }}</td>
+              <td>₹{{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="total">Total: ₹{{ total }}</div>
+      </div>
+
+      {% if show_qr %}
+      <div class="qr-box">
+        <h3>Scan & Pay via Google Pay</h3>
+        <img src="{% static 'images/madee_cafe_gpay_qr.png' %}" alt="Google Pay QR Code">
+        <p>UPI ID: <strong>madeecafe@okaxis</strong></p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

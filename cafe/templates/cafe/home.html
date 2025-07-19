@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Madee cafe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff7f0;
+        }
+
+        header {
+            background-color: #7B3F00;
+            color: white;
+            text-align: center;
+            padding: 25px 0 10px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #f8dcbf;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 350px;
+            background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-image h2 {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #4b2e1e;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-label {
+            font-weight: 500;
+            color: #444;
+            flex: 1;
+        }
+
+        .item-price {
+            color: #8a4a2c;
+            margin-right: 15px;
+            font-weight: 600;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .submit-btn {
+            background-color: #6d3c1f;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            margin-top: 25px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #5c321a;
+        }
+
+        .payment-options {
+            margin-top: 20px;
+        }
+
+        .payment-options label {
+            margin-right: 20px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Madee Cafe ☕</h1>
+    <p class="tagline">Fresh Brews & Delightful Bites</p>
+</header>
+
+<div class="hero-image">
+    <h2>Order Now, Savor Later 🍰</h2>
+</div>
+
+<div class="form-container">
+    <h3>Place Your Order</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <h4>Select Items & Quantity</h4>
+
+        <div class="item-row">
+            <span class="item-label">Espresso</span>
+            <span class="item-price">₹90</span>
+            <input type="number" name="espresso" class="quantity-input" min="0" value="0">
+        </div>
+        <div class="item-row">
+            <span class="item-label">Latte</span>
+            <span class="item-price">₹120</span>
+            <input type="number" name="latte" class="quantity-input" min="0" value="0">
+        </div>
+        <div class="item-row">
+            <span class="item-label">Cappuccino</span>
+            <span class="item-price">₹110</span>
+            <input type="number" name="cappuccino" class="quantity-input" min="0" value="0">
+        </div>
+        <div class="item-row">
+            <span class="item-label">Brownie</span>
+            <span class="item-price">₹70</span>
+            <input type="number" name="brownie" class="quantity-input" min="0" value="0">
+        </div>
+        <div class="item-row">
+            <span class="item-label">Croissant</span>
+            <span class="item-price">₹80</span>
+            <input type="number" name="croissant" class="quantity-input" min="0" value="0">
+        </div>
+        <div class="item-row">
+            <span class="item-label">Iced Mocha</span>
+            <span class="item-price">₹130</span>
+            <input type="number" name="iced_mocha" class="quantity-input" min="0" value="0">
+        </div>
+
+        
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" class="submit-btn">Add to Cart</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

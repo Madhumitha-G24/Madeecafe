@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delivery Address - Madee Café</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fffaf3;
+      padding: 50px;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #7B3F00;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 15px;
+      display: block;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: #7B3F00;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #5a2f00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Enter Your Delivery Address</h2>
+    <form method="POST">
+      {% csrf_token %}
+      
+      <label for="street">Street Address</label>
+      <input type="text" name="street" id="street" required>
+
+      <label for="city">City</label>
+      <input type="text" name="city" id="city" required>
+
+      <label for="state">State</label>
+      <input type="text" name="state" id="state" required>
+
+      <label for="zip">Zip Code</label>
+      <input type="text" name="zip" id="zip" pattern="\d{5,6}" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="text" name="phone" id="phone" pattern="\d{10}" required>
+
+      <button type="submit" class="submit-btn">Proceed to Payment</button>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Pay - Madee Café</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff8e1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .qr-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    img {
+      width: 250px;
+      margin-top: 20px;
+    }
+    h2 {
+      color: #7B3F00;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      background: #7B3F00;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="qr-container">
+    <h2>Scan to Pay with Google Pay</h2>
+    <p>UPI ID: <strong>madeecafe@okaxis</strong></p>
+
+    <!-- ✅ Working QR Code Image from Online URL -->
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=madeecafe@okaxis&pn=Madee%20Cafe&cu=INR" alt="GPay QR Code">
+
+    <p>After payment, your order will be processed. Thank you!</p>
+    <a href="{% url 'success' %}">Payment Done</a>
+  </div>
+</body>
+</html>

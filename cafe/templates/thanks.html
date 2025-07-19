@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Thank You</title></head>
+<body>
+    <h2>Thank you, {{ name }}!</h2>
+    <p>Your order has been placed with the following items:</p>
+    <ul>
+        {% for item, qty in ordered_items.items %}
+            <li>{{ item }} – {{ qty }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
