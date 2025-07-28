@@ -10,7 +10,8 @@ SECRET_KEY = 'django-insecure-8ze$a$re9)z6*9k*=0r!+8y4z$-m-^svz=s6!&4$@6r2=7kc16
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -56,10 +57,15 @@ WSGI_APPLICATION = 'madeecafe.wsgi.application'
 # Database using SQLite
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'madeecafe_db',
+        'USER': 'root',  # <--- This is the MySQL username
+        'PASSWORD': '@Madee..76**',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -95,3 +101,5 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+import django_heroku
+django_heroku.settings(locals())
